@@ -3,12 +3,76 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SPEQ</title>
+    <meta name="description" content="SPEQ is a declarative YAML-based API testing CLI for local and CI workflows.">
+    <title>SPEQ - Declarative API Testing</title>
+    <link rel="stylesheet" href="assets/styles.css">
   </head>
   <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="index.html">SPEQ</a>
+        <div class="nav-links">
+          <a href="quickstart.html">Quickstart</a>
+          <a href="install.html">Install</a>
+          <a href="ci-secrets.html">CI &amp; Secrets</a>
+          <a href="examples.html">Examples</a>
+        </div>
+      </nav>
+    </header>
+
     <main>
-      <h1>SPEQ</h1>
-      <p>Declarative YAML-based API testing framework.</p>
+      <section class="hero">
+        <p class="eyebrow">YAML-based API testing</p>
+        <h1>Write API tests as readable specs. Run them anywhere.</h1>
+        <p class="lead">
+          SPEQ is an open-source CLI runtime for declarative API tests. It validates YAML test suites,
+          executes them deterministically, and produces summary and Allure-compatible reports for local
+          development and CI.
+        </p>
+        <div class="actions">
+          <a class="button" href="quickstart.html">Start the quickstart</a>
+          <a class="button secondary" href="install.html">Install SPEQ</a>
+        </div>
+      </section>
+
+      <section class="grid two">
+        <article class="card">
+          <h2>For API teams</h2>
+          <p>
+            Keep request flows, assertions, fixtures, and reusable module actions in versioned YAML files.
+            SPEQ is designed for service repositories and dedicated API test repositories.
+          </p>
+        </article>
+        <article class="card">
+          <h2>For CI pipelines</h2>
+          <p>
+            Run the same specs in GitHub Actions with generated environment files, uploaded summaries,
+            logs, and Allure artifacts.
+          </p>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2>Core commands</h2>
+        <div class="command-list">
+          <code>speq init --mode in-repo</code>
+          <code>speq validate --speq-root .speq --format json</code>
+          <code>speq run --speq-root .speq --env ci --report summary</code>
+          <code>speq report --format allure --summary .speq-artifacts/results/summary.json</code>
+        </div>
+      </section>
+
+      <section class="section callout">
+        <h2>MVP v1.0.0 scope</h2>
+        <p>
+          This site documents the public MVP path: install the CLI, run a first spec, generate CI
+          environment YAML from GitHub Secrets, and use the canonical JSONPlaceholder examples.
+        </p>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <p>SPEQ is published by the <a href="https://github.com/speq-tms">speq-tms</a> GitHub organization.</p>
+    </footer>
   </body>
 </html>
