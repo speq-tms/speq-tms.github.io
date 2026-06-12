@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Install SPEQ, create a first YAML API test, and run it locally.">
+    <title>Quickstart - SPEQ</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="index.html">SPEQ</a>
+        <div class="nav-links">
+          <a href="quickstart.html" aria-current="page">Quickstart</a>
+          <a href="install.html">Install</a>
+          <a href="ci-secrets.html">CI &amp; Secrets</a>
+          <a href="examples.html">Examples</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Quickstart</p>
+        <h1>Run your first SPEQ API test.</h1>
+        <p class="lead">
+          This guide creates a small in-repository SPEQ project, validates it, and runs a smoke test
+          against a public API.
+        </p>
+      </section>
+
+      <section class="section">
+        <ol class="steps">
+          <li>
+            <h2>Install the CLI</h2>
+            <p>On macOS or Linux with Homebrew:</p>
+            <pre><code>brew tap speq-tms/tap https://github.com/speq-tms/homebrew-tap
+brew install speq</code></pre>
+            <p>For Windows, download the Windows zip from GitHub Releases and add the extracted folder to your PATH.</p>
+          </li>
+          <li>
+            <h2>Create a SPEQ project</h2>
+            <p>Inside the service repository you want to test, initialize an in-repository SPEQ layout:</p>
+            <pre><code>speq init --mode in-repo</code></pre>
+            <p>This creates a <code>.speq</code> directory with a manifest, environments, suites, and reports folders.</p>
+          </li>
+          <li>
+            <h2>Configure an environment</h2>
+            <p>Edit <code>.speq/environments/ci.yaml</code> with your API base URL:</p>
+            <pre><code>name: ci
+baseUrl: https://jsonplaceholder.typicode.com
+headers:
+  x-source: speq-quickstart</code></pre>
+          </li>
+          <li>
+            <h2>Add a smoke test</h2>
+            <p>Create <code>.speq/suites/posts_smoke.yaml</code>:</p>
+            <pre><code>id: "posts.smoke.get-by-id"
+title: "Posts smoke: get post by id"
+tags:
+  - smoke
+  - api
+steps:
+  - type: api
+    name: "GET /posts/1"
+    method: GET
+    url: "/posts/1"
+    assert:
+      - type: status
+        expected: 200</code></pre>
+          </li>
+          <li>
+            <h2>Validate and run</h2>
+            <pre><code>speq validate --speq-root .speq --format json
+speq run --speq-root .speq --env ci --tags smoke,api --report summary --output .speq-artifacts/results/summary.json
+speq report --speq-root .speq --format allure --summary .speq-artifacts/results/summary.json</code></pre>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section callout">
+        <h2>Next step</h2>
+        <p>
+          Move the same commands into GitHub Actions with generated environment YAML from repository
+          secrets. See <a href="ci-secrets.html">CI &amp; Secrets</a>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><a href="index.html">SPEQ</a> documentation for MVP v1.0.0.</p>
+    </footer>
+  </body>
+</html>

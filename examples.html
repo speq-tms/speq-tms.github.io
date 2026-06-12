@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SPEQ examples and the canonical JSONPlaceholder acceptance scenario.">
+    <title>Examples - SPEQ</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="index.html">SPEQ</a>
+        <div class="nav-links">
+          <a href="quickstart.html">Quickstart</a>
+          <a href="install.html">Install</a>
+          <a href="ci-secrets.html">CI &amp; Secrets</a>
+          <a href="examples.html" aria-current="page">Examples</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Examples</p>
+        <h1>Start from the canonical SPEQ examples.</h1>
+        <p class="lead">
+          The <a href="https://github.com/speq-tms/speq-examples">speq-examples</a> repository contains
+          reference layouts for in-repository tests, dedicated test repositories, and the public
+          JSONPlaceholder acceptance suite.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Repository layouts</h2>
+        <div class="grid two">
+          <article class="card">
+            <h3>In-repo mode</h3>
+            <p>
+              Keep SPEQ files under <code>.speq</code> inside the service repository. This is a good fit
+              when API tests evolve with the service code.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Test-repo mode</h3>
+            <p>
+              Keep SPEQ files in a dedicated test repository. This is a good fit for black-box API testing
+              across one or more deployed services.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>JSONPlaceholder acceptance scenario</h2>
+        <p>
+          The canonical MVP acceptance suite lives in <code>test-repo-mode-jsonplaceholder</code>. It runs
+          against <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a> and demonstrates
+          suites, modules, fixtures, generated data, retry policy, waiters, and report outputs.
+        </p>
+        <pre><code>git clone https://github.com/speq-tms/speq-examples.git
+cd speq-examples
+speq validate --speq-root test-repo-mode-jsonplaceholder --format json
+speq run --speq-root test-repo-mode-jsonplaceholder --env ci --tags smoke,api --report summary --output test-repo-mode-jsonplaceholder/reports/results/summary.json
+speq report --speq-root test-repo-mode-jsonplaceholder --format allure --summary test-repo-mode-jsonplaceholder/reports/results/summary.json</code></pre>
+      </section>
+
+      <section class="section">
+        <h2>Expected report paths</h2>
+        <ul>
+          <li><code>test-repo-mode-jsonplaceholder/reports/results/summary.json</code></li>
+          <li><code>test-repo-mode-jsonplaceholder/reports/allure</code></li>
+          <li><code>.speq-artifacts/logs</code> when using the GitHub runner defaults.</li>
+        </ul>
+        <p class="note">
+          Before local acceptance runs, remove old report output so you do not read stale results.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Version alignment</h2>
+        <p>For MVP v1.0.0, keep these components aligned before release:</p>
+        <ul>
+          <li><code>speq-cli</code>: <code>v1.0.0</code></li>
+          <li><code>speq-github-runner</code>: <code>v1</code> or exact <code>v1.0.0</code> tag</li>
+          <li><code>homebrew-tap</code>: formula version <code>1.0.0</code></li>
+          <li><code>speq-examples</code>: commit or tag verified by acceptance gates</li>
+          <li><code>speq-vscode-extension</code>: compatible with CLI <code>v1.0.0</code></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><a href="index.html">SPEQ</a> documentation for MVP v1.0.0.</p>
+    </footer>
+  </body>
+</html>
