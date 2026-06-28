@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Install SPEQ on macOS, Linux, and Windows.">
+    <title>Install - SPEQ</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="index.html">SPEQ</a>
+        <div class="nav-links">
+          <a href="quickstart.html">Quickstart</a>
+          <a href="install.html" aria-current="page">Install</a>
+          <a href="ci-secrets.html">CI &amp; Secrets</a>
+          <a href="examples.html">Examples</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Install</p>
+        <h1>Install the SPEQ CLI.</h1>
+        <p class="lead">
+          The SPEQ CLI is the runtime for validation, execution, reports, and CI. Install it locally for
+          authoring tests, or let the GitHub Action install it in CI.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>macOS and Linux with Homebrew</h2>
+        <pre><code>brew tap speq-tms/tap https://github.com/speq-tms/homebrew-tap
+brew install speq</code></pre>
+        <p>Check the installation:</p>
+        <pre><code>speq help
+speq version</code></pre>
+      </section>
+
+      <section class="section">
+        <h2>GitHub Release artifacts</h2>
+        <p>
+          Release binaries are published from <a href="https://github.com/speq-tms/speq-cli/releases">speq-cli releases</a>.
+          Download the archive for your platform and verify it with the matching <code>.sha256</code> file.
+        </p>
+        <ul>
+          <li><code>speq-linux-x86_64.tar.gz</code></li>
+          <li><code>speq-darwin-x86_64.tar.gz</code></li>
+          <li><code>speq-darwin-aarch64.tar.gz</code></li>
+          <li><code>speq-windows-x86_64.zip</code></li>
+        </ul>
+        <p class="note">
+          Do not use docs, runner, or Homebrew formula versions that point to missing release artifacts.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Manual install from an archive</h2>
+        <ol>
+          <li>Download the release archive for your operating system.</li>
+          <li>Extract the archive.</li>
+          <li>Move the <code>speq</code> binary into a directory on your PATH.</li>
+          <li>Run <code>speq help</code> and <code>speq version</code>.</li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>Windows</h2>
+        <p>
+          For MVP v1.0.0, Windows install is zip/manual only. Download <code>speq-windows-x86_64.zip</code>
+          from GitHub Releases, extract it, and add the extracted folder to your PATH.
+        </p>
+        <pre><code>speq help
+speq version</code></pre>
+        <p>No Windows package manager install path is documented for MVP v1.0.0.</p>
+      </section>
+
+      <section class="section callout">
+        <h2>CI install</h2>
+        <p>
+          In GitHub Actions, use <code>speq-tms/speq-github-runner@v1</code> with <code>setup-method: release</code>
+          or <code>mode: run</code>. See <a href="ci-secrets.html">CI &amp; Secrets</a>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><a href="index.html">SPEQ</a> documentation for MVP v1.0.0.</p>
+    </footer>
+  </body>
+</html>
